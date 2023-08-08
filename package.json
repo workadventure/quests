@@ -25,7 +25,8 @@
     "lint": "eslint src/ --ext .ts",
     "fix": "eslint src/ --ext .ts --fix",
     "semantic-release": "semantic-release",
-    "semantic-release-dry-run": "semantic-release -d"
+    "semantic-release-dry-run": "semantic-release -d",
+    "pretty": "prettier --write src/**/*.ts"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.3",
@@ -34,13 +35,16 @@
     "@semantic-release/npm": "^10.0.4",
     "@types/node": "^20.4.8",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@workadventure/iframe-api-typings": "^1.16.5",
     "eslint": "^8.46.0",
+    "eslint-config-prettier": "^9.0.0",
     "eslint-config-standard-with-typescript": "^37.0.0",
     "eslint-plugin-import": "^2.28.0",
     "eslint-plugin-n": "^16.0.1",
     "eslint-plugin-promise": "^6.1.1",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.3",
+    "prettier": "3.0.1",
     "semantic-release": "^21.0.7",
     "typescript": "^5.1.6",
     "vite": "^4.4.5",
@@ -49,7 +53,8 @@
   },
   "lint-staged": {
     "*.ts": [
-      "npm run fix"
+      "npm run fix",
+      "npm run pretty"
     ]
   },
   "repository": {
