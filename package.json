@@ -1,6 +1,6 @@
 {
   "name": "@workadventure/quests",
-  "version": "0.0.0-development",
+  "version": "1.0.0",
   "description": "Utility functions to create quests for WorkAdventure",
   "type": "module",
   "main": "./dist/quests.umd.cjs",
