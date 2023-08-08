@@ -1,0 +1,54 @@
+{
+  "name": "@workadventure/quests",
+  "version": "0.0.0-development",
+  "description": "Utility functions to create quests for WorkAdventure",
+  "type": "module",
+  "main": "./dist/quests.umd.cjs",
+  "module": "./dist/quests.js",
+  "types": "./dist/quests.d.ts",
+  "license": "MIT",
+  "author": "David Négrier <david@workadventu.re>",
+  "exports": {
+    ".": {
+      "import": "./dist/quests.js",
+      "require": "./dist/quests.umd.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview --host",
+    "test": "vitest",
+    "lint": "eslint src/ --ext .ts",
+    "fix": "eslint src/ --ext .ts --fix",
+    "semantic-release": "semantic-release"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.8",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "eslint": "^8.46.0",
+    "eslint-config-standard-with-typescript": "^37.0.0",
+    "eslint-plugin-import": "^2.28.0",
+    "eslint-plugin-n": "^16.0.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.3",
+    "typescript": "^5.1.6",
+    "vite": "^4.4.5",
+    "vite-plugin-dts": "^3.5.1",
+    "vitest": "^0.34.1",
+    "semantic-release": "^21.0.7"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "npm run fix"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/workadventure/quests.git"
+  }
+}
