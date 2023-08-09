@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/workadventure/quests/compare/v1.1.0...v1.1.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* Display the congratulation screen ([525da18](https://github.com/workadventure/quests/commit/525da181d7d4f066bb4c345478338c81a555eab5))
+
 # [1.1.0](https://github.com/workadventure/quests/compare/v1.0.0...v1.1.0) (2023-08-08)
 
 
