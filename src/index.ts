@@ -3,8 +3,10 @@
 
 import { type QuestDescriptor } from "./QuestDescriptor";
 import { type LeaderboardResponse } from "./LeaderboardResponse";
+import { type UIWebsite } from "@workadventure/iframe-api-typings";
+import { type LevelUpResponse } from "./LevelUpResponse";
 
-let questBaseUrl = "https://admin.workadventure.localhost";
+let questBaseUrl = "http://admin.workadventure.localhost";
 
 /**
  * INTERNAL: Sets the base URL of the quest server. This function should only be called if you are performing
@@ -14,10 +16,6 @@ let questBaseUrl = "https://admin.workadventure.localhost";
  */
 export function setQuestBaseUrl(baseUrl: string): void {
     questBaseUrl = baseUrl;
-}
-
-export function grantXp(questKey: string, xp: number): void {
-    console.log("grantXp", questKey, xp);
 }
 
 function getUserRoomToken(): string {
@@ -49,7 +47,7 @@ export async function getQuest(questKey: string): Promise<QuestDescriptor> {
 }
 
 /**
- * Returns the leaderboard for the quest whose key is `questKey`.
+ * Returns the leaderboard for the quest whose key is `questKey` as JS object.
  */
 export async function getLeaderboard(questKey: string): Promise<LeaderboardResponse> {
     const url = new URL(`/api/quests/${questKey}/leaderboard`, questBaseUrl);
@@ -67,12 +65,22 @@ export async function getLeaderboard(questKey: string): Promise<LeaderboardRespo
 }
 
 /**
+ * Returns the URL of the leaderboard as an HTML page (to be displayed in an iframe).
+ * @return URL
+ */
+export function getLeaderboardURL(questKey: string): URL {
+    const url = new URL(`/quests/${questKey}/leaderboard`, questBaseUrl);
+    url.search = new URLSearchParams({ room: WA.room.id, token: getUserRoomToken() }).toString();
+    return url;
+}
+
+/**
  * Earns `xp` XP for the quest whose key is `questKey` for the current user.
  */
-export async function levelUp(questKey: string, xp: number): Promise<void> {
+export async function levelUp(questKey: string, xp: number): Promise<LevelUpResponse> {
     const url = new URL(`/api/quests/${questKey}/level-up`, questBaseUrl);
     const response = await fetch(url, {
-        method: "GET",
+        method: "POST",
         headers: {
             "Content-Type": "application/json",
             Authorization: getUserRoomToken(),
@@ -82,5 +90,57 @@ export async function levelUp(questKey: string, xp: number): Promise<void> {
     if (!response.ok) {
         throw new Error(`An error occurred. HTTP Code: ${response.status} ${response.statusText}.`);
     }
-    return await response.json();
+    const data: LevelUpResponse = await response.json();
+    if (data.awardedBadges.length > 0) {
+        (async () => {
+            for (const badge of data.awardedBadges) {
+                // Display awarded badges one by one
+                await displayCongratulations(questKey, badge);
+            }
+        })().catch((e) => {
+            console.error(e);
+        });
+    }
+    return data;
+}
+
+let congratulationsWebsitePromise: Promise<UIWebsite> | undefined;
+
+async function displayCongratulations(quest: string, badge: string): Promise<void> {
+    if (congratulationsWebsitePromise !== undefined) {
+        await (await congratulationsWebsitePromise).close();
+    }
+
+    const url = new URL(`/quests/${quest}/badge/${badge}/congratulations`, questBaseUrl);
+    url.search = new URLSearchParams({ token: getUserRoomToken() }).toString();
+    congratulationsWebsitePromise = WA.ui.website.open({
+        url: url.toString(),
+        position: {
+            vertical: "middle",
+            horizontal: "middle",
+        },
+        allowApi: true,
+        visible: true,
+        size: {
+            width: "100%",
+            height: "100%",
+        },
+    });
+
+    const soundUrl = new URL(`/audio/clapping.mp3`, questBaseUrl);
+    WA.sound.loadSound(soundUrl.toString()).play({
+        loop: false,
+        volume: 1,
+    });
+
+    const congratulationsWebsite = await congratulationsWebsitePromise;
+    await new Promise<void>((resolve) => {
+        setTimeout(() => {
+            resolve();
+        }, 8000);
+    });
+    congratulationsWebsite.close().catch((e) => {
+        console.error(e);
+    });
+    congratulationsWebsitePromise = undefined;
 }
