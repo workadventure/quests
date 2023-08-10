@@ -5,7 +5,7 @@
   "type": "module",
   "main": "./dist/quests.umd.cjs",
   "module": "./dist/quests.js",
-  "types": "./dist/quests.d.ts",
+  "types": "./dist/index.d.ts",
   "license": "MIT",
   "author": "David Négrier <david@workadventu.re>",
   "exports": {
