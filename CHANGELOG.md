@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/workadventure/quests/compare/v1.1.2...v1.1.3) (2023-08-10)
+
+
+### Bug Fixes
+
+* Fixing XP not correctly sent in levelUp ([aa95a0c](https://github.com/workadventure/quests/commit/aa95a0c5b3355d07b5afdc9ba821ab5c67b9aa6d))
+
 ## [1.1.2](https://github.com/workadventure/quests/compare/v1.1.1...v1.1.2) (2023-08-10)
 
 
