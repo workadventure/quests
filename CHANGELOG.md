@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/workadventure/quests/compare/v1.1.1...v1.1.2) (2023-08-10)
+
+
+### Bug Fixes
+
+* Fixing path to types ([cd78647](https://github.com/workadventure/quests/commit/cd78647f398fa020f097be6ed4a9f56c6e73753f))
+
 ## [1.1.1](https://github.com/workadventure/quests/compare/v1.1.0...v1.1.1) (2023-08-09)
 
 
