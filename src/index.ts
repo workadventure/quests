@@ -82,10 +82,11 @@ export async function levelUp(questKey: string, xp: number): Promise<LevelUpResp
     const response = await fetch(url, {
         method: "POST",
         headers: {
+            "Accept": "application/json",
             "Content-Type": "application/json",
             Authorization: getUserRoomToken(),
-            body: JSON.stringify({ xp, room: WA.room.id }),
         },
+        body: JSON.stringify({ xp }),
     });
     if (!response.ok) {
         throw new Error(`An error occurred. HTTP Code: ${response.status} ${response.statusText}.`);
