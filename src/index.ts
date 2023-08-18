@@ -81,7 +81,7 @@ export async function levelUp(questKey: string, xp: number): Promise<LevelUpResp
     const response = await fetch(url, {
         method: "POST",
         headers: {
-            "Accept": "application/json",
+            Accept: "application/json",
             "Content-Type": "application/json",
             Authorization: getUserRoomToken(),
         },
@@ -107,7 +107,7 @@ export async function levelUp(questKey: string, xp: number): Promise<LevelUpResp
 async function displayCongratulations(quest: string, badge: string): Promise<void> {
     const url = new URL(`/quests/${quest}/badge/${badge}/congratulations`, questBaseUrl);
     url.search = new URLSearchParams({ token: getUserRoomToken() }).toString();
-    WA.ui.website.open({
+    await WA.ui.website.open({
         url: url.toString(),
         position: {
             vertical: "middle",
