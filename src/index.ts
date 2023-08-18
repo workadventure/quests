@@ -105,16 +105,10 @@ export async function levelUp(questKey: string, xp: number): Promise<LevelUpResp
     return data;
 }
 
-let congratulationsWebsitePromise: Promise<UIWebsite> | undefined;
-
 async function displayCongratulations(quest: string, badge: string): Promise<void> {
-    if (congratulationsWebsitePromise !== undefined) {
-        await (await congratulationsWebsitePromise).close();
-    }
-
     const url = new URL(`/quests/${quest}/badge/${badge}/congratulations`, questBaseUrl);
     url.search = new URLSearchParams({ token: getUserRoomToken() }).toString();
-    congratulationsWebsitePromise = WA.ui.website.open({
+    WA.ui.website.open({
         url: url.toString(),
         position: {
             vertical: "middle",
@@ -133,15 +127,4 @@ async function displayCongratulations(quest: string, badge: string): Promise<voi
         loop: false,
         volume: 1,
     });
-
-    const congratulationsWebsite = await congratulationsWebsitePromise;
-    await new Promise<void>((resolve) => {
-        setTimeout(() => {
-            resolve();
-        }, 8000);
-    });
-    congratulationsWebsite.close().catch((e) => {
-        console.error(e);
-    });
-    congratulationsWebsitePromise = undefined;
 }
