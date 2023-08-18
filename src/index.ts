@@ -3,10 +3,9 @@
 
 import { type QuestDescriptor } from "./QuestDescriptor";
 import { type LeaderboardResponse } from "./LeaderboardResponse";
-import { type UIWebsite } from "@workadventure/iframe-api-typings";
 import { type LevelUpResponse } from "./LevelUpResponse";
 
-let questBaseUrl = "http://admin.workadventure.localhost";
+let questBaseUrl = "https://admin.workadventu.re";
 
 /**
  * INTERNAL: Sets the base URL of the quest server. This function should only be called if you are performing
