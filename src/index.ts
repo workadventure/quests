@@ -120,10 +120,4 @@ async function displayCongratulations(quest: string, badge: string): Promise<voi
             height: "100%",
         },
     });
-
-    const soundUrl = new URL(`/audio/clapping.mp3`, questBaseUrl);
-    WA.sound.loadSound(soundUrl.toString()).play({
-        loop: false,
-        volume: 1,
-    });
 }
