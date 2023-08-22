@@ -1,3 +1,10 @@
+## [1.1.5](https://github.com/workadventure/quests/compare/v1.1.4...v1.1.5) (2023-08-22)
+
+
+### Bug Fixes
+
+* Removing sound from level-up ([04dc4ea](https://github.com/workadventure/quests/commit/04dc4ea7ff8070c6f54cc057102fe07869892d47))
+
 ## [1.1.4](https://github.com/workadventure/quests/compare/v1.1.3...v1.1.4) (2023-08-18)
 
 
