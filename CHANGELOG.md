@@ -1,3 +1,10 @@
+## [1.1.6](https://github.com/workadventure/quests/compare/v1.1.5...v1.1.6) (2023-08-24)
+
+
+### Bug Fixes
+
+* Throwing an error if user not logged in levelUp ([8fe93d4](https://github.com/workadventure/quests/commit/8fe93d4c503f3b1d9380ccd5965ef7de841dc9c1))
+
 ## [1.1.5](https://github.com/workadventure/quests/compare/v1.1.4...v1.1.5) (2023-08-22)
 
 
