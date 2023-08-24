@@ -77,6 +77,9 @@ export function getLeaderboardURL(questKey: string): URL {
  * Earns `xp` XP for the quest whose key is `questKey` for the current user.
  */
 export async function levelUp(questKey: string, xp: number): Promise<LevelUpResponse> {
+    if (!WA.player.isLogged) {
+        throw new Error("You must be logged to gain XP.");
+    }
     const url = new URL(`/api/quests/${questKey}/level-up`, questBaseUrl);
     const response = await fetch(url, {
         method: "POST",
