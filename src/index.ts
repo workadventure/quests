@@ -5,7 +5,7 @@ import { type QuestDescriptor } from "./QuestDescriptor";
 import { type LeaderboardResponse } from "./LeaderboardResponse";
 import { type LevelUpResponse } from "./LevelUpResponse";
 
-let questBaseUrl = "https://admin.workadventu.re";
+let questBaseUrl = "https://member.workadventu.re";
 
 /**
  * INTERNAL: Sets the base URL of the quest server. This function should only be called if you are performing
