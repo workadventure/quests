@@ -1,3 +1,10 @@
+## [1.1.7](https://github.com/workadventure/quests/compare/v1.1.6...v1.1.7) (2025-11-12)
+
+
+### Bug Fixes
+
+* update admin to member back office url ([af54914](https://github.com/workadventure/quests/commit/af549141f52bba9468d19f9ddce5e7d3a0100109))
+
 ## [1.1.6](https://github.com/workadventure/quests/compare/v1.1.5...v1.1.6) (2023-08-24)
 
 
